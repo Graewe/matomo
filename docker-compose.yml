@@ -35,7 +35,7 @@ services:
       - MATOMO_USERNAME=matomo
       - MATOMO_HOST=matomo
       - MATOMO_PASSWORD=password01
-      - MATOMO_EMAIL=matomo@localhost.fr
+      - MATOMO_EMAIL=matomo@test.de
     restart: always
 
 networks:
