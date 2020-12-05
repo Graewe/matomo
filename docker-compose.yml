@@ -22,8 +22,7 @@ services:
     depends_on:
       - mysql
     ports:
-      - "9020:80"
-      - "9021:443"
+      - "8080:80"
     environment:
       - MARIADB_HOST=mysql
       - MARIADB_ROOT_PASSWORD=password01
