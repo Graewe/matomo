@@ -1,0 +1,44 @@
+version: '3.7'
+
+services:
+  mysql:
+    image: mysql:5.7.25
+    environment:
+      - MYSQL_ROOT_PASSWORD=password01
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    depends_on:
+      - mysql
+    ports:
+      - "9010:80"
+      - "9011:443"
+    environment:
+      - PMA_HOST=mysql
+    restart: always
+
+  matomo:
+    image: bitnami/matomo:latest
+    depends_on:
+      - mysql
+    ports:
+      - "9020:80"
+      - "9021:443"
+    environment:
+      - MARIADB_HOST=mysql
+      - MARIADB_ROOT_PASSWORD=password01
+      - MYSQL_CLIENT_CREATE_DATABASE_NAME=matomo
+      - MYSQL_CLIENT_CREATE_DATABASE_USER=matomo
+      - MYSQL_CLIENT_CREATE_DATABASE_PASSWORD=password01
+      - MATOMO_DATABASE_NAME=matomo
+      - MATOMO_DATABASE_USER=matomo
+      - MATOMO_DATABASE_PASSWORD=password01
+      - MATOMO_USERNAME=matomo
+      - MATOMO_HOST=matomo
+      - MATOMO_PASSWORD=password01
+      - MATOMO_EMAIL=matomo@localhost.fr
+    restart: always
+
+networks:
+  default:
